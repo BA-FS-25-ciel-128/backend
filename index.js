@@ -109,34 +109,14 @@ const generateSpeechWithVisemes = async (text) => {
 
     // Viseme mapping object for faster lookups
     const visemeMapping = {
-      // Bilabial consonants
-      "p": "B", "b": "B", "m": "B",
-      // Labiodental consonants
-      "f": "F", "v": "F",
-      // Dental consonants
-      "T": "D", "D": "D",
-      // Alveolar consonants
-      "t": "C", "d": "C", "n": "C",
-      // Velar consonants
-      "k": "G", "g": "G", "N": "G",
-      // Sibilants
-      "s": "S", "z": "S",
-      // Post-alveolar sibilants
-      "S": "K", "Z": "K",
-      // Liquids
-      "r": "L", "l": "L",
-      // High front vowels
-      "i": "I", "I": "I",
-      // Mid front vowels
-      "e": "E", "E": "E",
-      // Low vowels
-      "a": "A",
-      // Mid back vowels
-      "o": "O", "O": "O",
-      // High back vowels
-      "u": "U", "U": "U",
-      // Schwa and neutral
-      "@": "X",
+      "p": "A",
+      "t": "B", "T": "B", "k": "B", "i": "B", "r": "B", "s": "B",
+      "e": "C",
+      "a": "D",
+      "@": "E", "E": "E", "S": "E",
+      "u": "F", "o": "F", "O": "F",
+      "f": "G",
+      "l": "H"
     };
 
     // Process mouth cues more efficiently
