@@ -157,19 +157,20 @@ const generateSpeechWithVisemes = async (text) => {
   }
 };
 
-const lipSyncMessage = async (message) => {
+const lipSyncMessage = async (message, index) => {
   const time = new Date().getTime();
-  console.log(`Starting conversion for message ${message}`);
+  console.log(`Starting conversion for message ${index}: "${message}"`);
+
 
   await execCommand(
-    `"${ffmpeg}" -y -i audios/message_${message}.mp3 audios/message_${message}.wav`
+    `"${ffmpeg}" -y -i audios/message_${index}.mp3 audios/message_${index}.wav`
     // -y to overwrite the file
   );
 
   console.log(`Conversion done in ${new Date().getTime() - time}ms`);
   const rhuarbPath = path.resolve('./bin/Rhubarb-Lip-Sync-1.13.0-Windows/rhubarb');
   await execCommand(
-    `"${rhuarbPath}" -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
+    `"${rhuarbPath}" -f json -o audios/message_${index}.json audios/message_${index}.wav -r phonetic`
   );
   // -r phonetic is faster but less accurate
   console.log(`Lip sync done in ${new Date().getTime() - time}ms`);
@@ -268,12 +269,13 @@ app.post("/chat", async (req, res) => {
     } catch (error) {
       console.error(`Fehler bei Nachricht ${i}:`, error);
 
+      var outputBaseName = `audios/message_${i}`
       // Fallback zur bisherigen ElevenLabs + Rhubarb Methode
       console.log("Verwende Fallback-Methode...");
       const fileName = `${outputBaseName}.mp3`;
 
       await voice.textToSpeech(elevenLabsApiKey, voiceID, fileName, textInput);
-      await lipSyncMessage(i);
+      await lipSyncMessage(textInput, i);
 
       message.audio = await audioFileToBase64(fileName);
       message.lipsync = await readJsonTranscript(`${outputBaseName}.json`);
@@ -287,12 +289,12 @@ const readJsonTranscript = async (file) => {
   const data = await fs.readFile(file, "utf8");
   return JSON.parse(data);
 };
-/*
+
 const audioFileToBase64 = async (file) => {
   const data = await fs.readFile(file);
   return data.toString("base64");
 };
-*/
+
 
 app.listen(port, () => {
   console.log(`Virtual Girlfriend listening on port ${port}`);
