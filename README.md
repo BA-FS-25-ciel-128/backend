@@ -56,6 +56,6 @@ This is the fallback option for generating lip sync when the Polly API is unavai
 
 - Clone this repository
 - Clone the frontend repository
-- run `npm run install`
+- run `npm install`
 - run `npm run dev`
 
