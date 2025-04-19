@@ -2,7 +2,10 @@
 
 ## Description
 
-This project is part of our (Ilimea Gall and Jasmin Zuzo) Bachelor's thesis at ZHAW and shows a 3D-Avatar, called TalkyWalky, embedded in a chat environment. TalkyWalky takes on the role of an English teacher for children, responding with animations and expressions that match the current conversation. 
+This project is part of our (Ilimea Gall and Jasmin Zuzo) Bachelor's thesis at [ZHAW](https://www.zhaw.ch/en/university) and shows a 3D-Avatar, called TalkyWalky, embedded in a chat environment. TalkyWalky takes on the role of an English teacher for children, responding with animations and expressions that match the current conversation. 
+
+The goal of our thesis is to evaluate how effectively such an avatar can use OpenAI to deliver real-time responses with matching animations and to assess the effort required to achieve this. To do so, we defined reactions based on user expectations and extended the avatar with gestures, facial expressions, and other animations that can be triggered based on the content of each response. These enhancements aim to make the avatar more engaging and natural for the target audience, while ensuring that the animations feel fitting and not exaggerated.
+
 
 This is the backend of the application, the frontend can be found [here](https://github.com/BA-FS-25-ciel-128/frontend).
 
