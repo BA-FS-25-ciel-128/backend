@@ -19,7 +19,9 @@ This backend service uses Express.js to power the conversational logic of TalkyW
 
 - Amazon Polly API for text-to-speech conversion and viseme data generation
 
-- ElevenLabs API as a backup for generating speech when Amazon Polly is unavailable
+- ElevenLabs API as a backup for generating text-to-speech when Amazon Polly is unavailable
+  
+Additionally to ElevenLabs the backend uses [Rhuburb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync) to generate the according viseme data to the generated audio.
 
 The backend processes user messages, creates child-friendly responses with matching facial expressions and animations, turns the text into speech and generates viseme data for accurate lip synchronization.
 
