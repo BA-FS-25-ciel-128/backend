@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is part of our (Ilimea Gall and Jasmin Zuzo) Bachelor's thesis at [ZHAW](https://www.zhaw.ch/en/university) and shows a 3D-Avatar, called TalkyWalky, embedded in a chat environment. TalkyWalky takes on the role of an English teacher for children, responding with animations and expressions that match the current conversation. 
+This project is part of our (Ilimea Gall and Jasmin Zuzo) Bachelor's thesis at [ZHAW](https://www.zhaw.ch/en/university) and shows a 3D-Avatar, called TalkyWalky, embedded in a chat environment. TalkyWalky takes on the role of an English buddy for children, responding with animations and expressions that match the current conversation. 
 
 The goal of our thesis is to evaluate how effectively such an avatar can use OpenAI to deliver real-time responses with matching animations and to assess the effort required to achieve this. To do so, we defined reactions based on user expectations and extended the avatar with gestures, facial expressions, and other animations that can be triggered based on the content of each response. These enhancements aim to make the avatar more engaging and natural for the target audience, while ensuring that the animations feel fitting and not exaggerated.
 
@@ -76,6 +76,12 @@ This is the fallback option for generating lip sync when the Polly API is unavai
 
 - Clone this repository
 - Clone the frontend repository
-- run `npm install`
-- run `npm run dev`
+- run `npm install` in this project folder
+- run `npm run dev` in this project folder
+
+**Start the application with Docker**
+
+- Clone this repository
+- Clone the frontend repository and follow the instructions there
+
 
