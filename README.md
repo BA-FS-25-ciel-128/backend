@@ -40,7 +40,7 @@ More details can be found in the corresponding [youtube video](https://www.youtu
 - Copy your API key and paste it into the .env file using the following format:
  `OPENAI_API_KEY=your-api-key-here`
 
-**Amazon PollyAPI**
+**Amazon Polly API**
 - Create an AWS account if you don't already have one.
 - Login in the [AWS Management Console](https://console.aws.amazon.com)
 - Go to the IAM-Service
