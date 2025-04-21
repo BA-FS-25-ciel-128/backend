@@ -51,9 +51,9 @@ More details can be found in the corresponding [youtube video](https://www.youtu
      - Select “Attach policy directly”
      - Search for “AmazonPollyFullAccess” and select this policy
 - Save the access key:
-- IMPORTANT: On the next page you will see the “Access key ID” and the “Secret access key”
-- Download the CSV file or copy both values immediately!
-- This is the only opportunity to see this information. If you lose them, you will need to create new keys. This you can do in the overview of your users.
+  - IMPORTANT: On the next page you will see the “Access key ID” and the “Secret access key”
+  - Download the CSV file or copy both values immediately!
+  - This is the only opportunity to see this information. If you lose them, you will need to create new keys. This you can do in the overview of your users.
   
 - Copy your Access key ID and paste it into the .env file using the following format:
  `AWS_ACCESS_KEY_ID=your-access-key-ID-here`
