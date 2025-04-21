@@ -35,26 +35,42 @@ More details can be found in the corresponding [youtube video](https://www.youtu
 
 **OpenAI**
 - Create an OpenAI account if you don't already have one.
--  Generate a new API key on [Platform OpenAI](https://platform.openai.com/api-keys). 
+- Generate a new API key on [Platform OpenAI](https://platform.openai.com/api-keys). 
 - Add sufficient credit (5$ is enough to get started) under [Billing](https://platform.openai.com/settings/organization/billing/overview).
 - Copy your API key and paste it into the .env file using the following format:
  `OPENAI_API_KEY=your-api-key-here`
 
 **Amazon PollyAPI**
-
-- Create ...
-
-TODO ask Ilimea
+- Create an AWS account if you don't already have one.
+- Login in the [AWS Management Console](https://console.aws.amazon.com)
+- Go to the IAM-Service
+- Create a new user:
+     - Under “Select AWS access type”, select the option “Programmatic access”
+     - Click on “Next: Authorizations”
+  - Assign authorizations:
+     - Select “Attach policy directly”
+     - Search for “AmazonPollyFullAccess” and select this policy
+- Save the access key:
+- IMPORTANT: On the next page you will see the “Access key ID” and the “Secret access key”
+- Download the CSV file or copy both values immediately!
+- This is the only opportunity to see this information. If you lose them, you will need to create new keys. This you can do in the overview of your users.
+  
+- Copy your Access key ID and paste it into the .env file using the following format:
+ `AWS_ACCESS_KEY_ID=your-access-key-ID-here`
+- Copy your Secret access key and paste it into the .env file using the following format:
+ `AWS_SECRET_ACCESS_KEY=your-secret-access-key-here`
+- If wanted, add your chosen region into the .env file using the following format:
+  `AWS_REGION=your-chosen-region-here`
 
 **ElevenLabs**
-
-- 
-
-TODO ask Ilimea
+- Create an ElevenLabs account if you don't already have one.
+- Generate a new API key in your [ElevenLabs Settings](https://elevenlabs.io/app/settings/api-keys).
+- Copy your API key and paste it into the .env file using the following format:
+ `ELEVEN_LABS_API_KEY=your-api-key-here`
 
 **Rhubarb Lipsync**
 
-This is the fallback option for generating lip sync when the Polly API is unavailable. It takes significantly more time to generate the necessary data, but ensures functionality. Simply donwload the [RhubarbLibrary binary](https://github.com/DanielSWolf/rhubarb-lip-sync/releases) for your operating system and place it in your `bin` folder. Now the rhubarb executable can be accesed through `bin/rhubarb`.
+This is the fallback option for generating lip sync when the Polly API is unavailable. It takes significantly more time to generate the necessary data, but ensures functionality. Simply download the [RhubarbLibrary binary](https://github.com/DanielSWolf/rhubarb-lip-sync/releases) for your operating system and place it in your `bin` folder. Now the rhubarb executable can be accesed through `bin/rhubarb`.
 
 **Start the application locally**
 
