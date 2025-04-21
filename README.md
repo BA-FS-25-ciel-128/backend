@@ -13,6 +13,7 @@ Additionally, the blend file of the avatar TalkyWalky can be found [here](https:
 
 ## Functionality
 
+The backend processes user messages, creates child-friendly responses with matching facial expressions and animations, turns the text into speech and generates viseme data for accurate lip synchronization.
 This backend service uses Express.js to power the conversational logic of TalkyWalky. It integrates several APIs:
 
 - OpenAI API to generate contextually appropriate responses for children learning English
@@ -22,8 +23,6 @@ This backend service uses Express.js to power the conversational logic of TalkyW
 - ElevenLabs API as a backup for generating text-to-speech when Amazon Polly is unavailable
 
 In case of unavailability of Amazon Polly, additionally to ElevenLabs API the backend uses [Rhuburb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync) to generate the according viseme data to the generated audio.
-
-The backend processes user messages, creates child-friendly responses with matching facial expressions and animations, turns the text into speech and generates viseme data for accurate lip synchronization.
 
 ## Background
 
