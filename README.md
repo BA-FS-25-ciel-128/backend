@@ -72,6 +72,8 @@ More details can be found in the corresponding [youtube video](https://www.youtu
 
 This is the fallback option for generating lip sync when the Polly API is unavailable. It takes significantly more time to generate the necessary data, but ensures functionality. Simply download the [RhubarbLibrary binary](https://github.com/DanielSWolf/rhubarb-lip-sync/releases) for your operating system and place it in your `bin` folder. Now the rhubarb executable can be accesed through `bin/rhubarb`.
 
+### Run the application
+
 **Start the application locally**
 
 - Clone this repository
