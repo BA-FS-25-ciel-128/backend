@@ -187,7 +187,7 @@ app.post("/chat", async (req, res) => {
           audio: await audioFileToBase64("audios/intro_0.wav"),
           lipsync: await readJsonTranscript("audios/intro_0.json"),
           facialExpression: "smile",
-          animation: "Talking_1",
+          animation: "idle",
         },
       ],
     });
@@ -203,7 +203,7 @@ app.post("/chat", async (req, res) => {
           audio: await audioFileToBase64("audios/api_0.wav"),
           lipsync: await readJsonTranscript("audios/api_0.json"),
           facialExpression: "angry",
-          animation: "Angry",
+          animation: "me",
         },
       ],
     });
@@ -224,7 +224,7 @@ app.post("/chat", async (req, res) => {
         You will always reply with a JSON array of messages. With a maximum of 3 messages.
         Each message has a text, facialExpression, and animation property.
         The different facial expressions are: smile, sad, angry, surprised, funnyFace, and default.
-        The different animations are: Talking_0, Talking_1, Talking_2, Crying, Laughing, Rumba, Idle, Terrified, and Angry. 
+        The different animations are: idle, me, happy jump, cute hands, talking BA. 
         `,
         },
         {
