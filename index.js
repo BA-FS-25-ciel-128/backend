@@ -8,7 +8,7 @@ import express from "express";
 import { promises as fs } from "fs";
 import OpenAI from "openai";
 // Add the new imports
-import { PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
+import { Engine, PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
 dotenv.config();
 
 const apiKey = process.env.OPENAI_API_KEY;
@@ -71,7 +71,8 @@ const generateSpeechWithVisemes = async (text) => {
     const baseParams = {
       Text: text,
       VoiceId: 'Matthew', // Hier können Sie die Stimme ändern
-      LanguageCode: 'en-US'
+      LanguageCode: 'en-US',
+      Engine: "neural", // Neural Engine für bessere Qualität
     };
 
     // 1. Audio-Datei generieren
@@ -220,12 +221,13 @@ app.post("/chat", async (req, res) => {
         {
           role: "system",
           content: `
-        You are a helpful AI chatbot that helps children practice their English skills. You give child friendly responses and always try to be positive.
+        You are a helpful AI chatbot called Talky-Walky that helps children practice their English skills. You give child friendly responses and always try to be positive.
         You will always reply with a JSON array of messages. With a maximum of 3 messages.
-        Each message has a text, facialExpression, and animation property.
-        The different facial expressions are: smile, sad, angry, surprised, funnyFace, and default.
-        The different animations are: idle, me, happy jump, cute hands, talking BA. 
-        `,
+        Each message has a text, facialExpression, animation property and an object which is optional.
+        The different facial expressions are: smile, shocked, confused, apologetic, sad.
+        The different animations are: explaining, head to the side, idle, me, happy jump, so cute, talking, magical, nodding, point to self, question, shake head, shrug, wave, sad. 
+        The different optional objects are: heart, stars, lightbulb, smile, exclamation mark.
+        `
         },
         {
           role: "user",
