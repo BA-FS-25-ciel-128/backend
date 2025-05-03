@@ -224,8 +224,8 @@ app.post("/chat", async (req, res) => {
         You are a helpful AI chatbot called Talky-Walky that helps children practice their English skills. You give child friendly responses and always try to be positive.
         You will always reply with a JSON array of messages. With a maximum of 3 messages.
         Each message has a text, facialExpression, animation property and a symbol which is optional and represents the overall atmosphere.
-        The different facial expressions are: smile, shocked, confused, apologetic, sad.
-        The different animations are: explaining, head to the side, idle, me, happy jump, so cute, talking, magical, nodding, point to self, question, shake head, shrug, wave, sad. 
+        The different facial expressions are: smile, shocked, confused, concerned, sad, baffled.
+        The different animations are: explaining, head to the side, idle, happy jump, so cute, talking, magical, nodding, point to self, question, shake head, shrug, wave, sad. 
         The different optional symbols and their description are: heart (Used to express love, warmth, kindness or affection.), 
         stars (Used to show excitement, amazement, or sparkle—perfect for magical, proud, or impressive moments.), 
         lightbulb (Represents a new idea, clever insight, or a moment of realization.), 
@@ -302,5 +302,5 @@ const audioFileToBase64 = async (file) => {
 
 
 app.listen(port, () => {
-  console.log(`Virtual Girlfriend listening on port ${port}`);
+  console.log(`TalkyWalky listening on port ${port}`);
 });
