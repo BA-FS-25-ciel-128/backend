@@ -7,21 +7,20 @@ import voice from "elevenlabs-node";
 import express from "express";
 import { promises as fs } from "fs";
 import OpenAI from "openai";
-// Add the new imports
 import { Engine, PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
 dotenv.config();
 
 const apiKey = process.env.OPENAI_API_KEY;
 if (!apiKey) {
   console.error("❌ Kein OpenAI API-Schlüssel gesetzt!");
-  process.exit(1); // Beendet die App sofort
+  process.exit(1); //Closes app immediately if no API key is set
 }
 const openai = new OpenAI({ apiKey });
 
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
 const voiceID = "9BWtsMINqrJLrRacOk9x";
 
-// AWS konfigurieren - Sie benötigen AWS-Zugangsdaten
+// Configure AWS – AWS credentials are required, see Readme
 const pollyClient = new PollyClient({
   region: process.env.AWS_REGION || 'us-east-1',
   credentials: {
@@ -54,7 +53,7 @@ const execCommand = (command) => {
 
 const speechCache = new Map();
 
-// Amazon Polly TTS mit Viseme-Unterstützung
+// Amazon Polly TTS with Viseme-Support
 const generateSpeechWithVisemes = async (text) => {
   try {
     // Check cache first
@@ -67,21 +66,21 @@ const generateSpeechWithVisemes = async (text) => {
     console.log(`Starte Amazon Polly für: "${text}"`);
     const time = new Date().getTime();
 
-    // Basis-Parameter für beide Anfragen
+    // Base parameters for both requests
     const baseParams = {
       Text: text,
-      VoiceId: 'Matthew', // Hier können Sie die Stimme ändern
+      VoiceId: 'Matthew', // Change this to change voice
       LanguageCode: 'en-US',
-      Engine: "neural", // Neural Engine für bessere Qualität
+      Engine: "neural", 
     };
 
-    // 1. Audio-Datei generieren
+    // 1. Generate Audio-Datei 
     const audioParams = {
       ...baseParams,
       OutputFormat: 'mp3',
     };
 
-    // 2. Viseme-Markierungen generieren
+    // 2. Generate Viseme Markers
     const visemeParams = {
       ...baseParams,
       OutputFormat: 'json',
@@ -103,7 +102,7 @@ const generateSpeechWithVisemes = async (text) => {
     const markString = new TextDecoder().decode(markBuffer);
     const visemeMarks = markString.trim().split('\n').map(JSON.parse);
 
-    // Konvertiere in Rhubarb-ähnliches Format für Kompatibilität mit bestehendem Code
+    // Convert to Rhubarb-like format for compatibility with existing code
     const rhubarbFormat = {
       mouthCues: []
     };
@@ -225,7 +224,7 @@ app.post("/chat", async (req, res) => {
         You will always reply with a JSON array of messages. With a maximum of 3 messages.
         Each message has a text, facialExpression, animation property and a symbol which is optional and represents the overall atmosphere.
         The different facial expressions are: smile, shocked, confused, concerned, sad, offended.
-        The different animations are: explaining, head to the side, idle, happy jump, so cute, talking, magical, nodding, point to self, question, shake head, shrug, wave, sad. 
+        The different animations are: explaining, head to the side, idle, happy jump, so cute, talking, hands to heart, nodding, point to self, question, shake head, shrug, wave, sad. 
         The different optional symbols and their description are: heart (Used to express love, warmth, kindness or affection.), 
         stars (Used to show excitement, amazement, or sparkle—perfect for magical, proud, or impressive moments.), 
         lightbulb (Represents a new idea, clever insight, or a moment of realization.), 
@@ -248,7 +247,7 @@ app.post("/chat", async (req, res) => {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
 
-      // generate audio file
+      // Generate audio file
       const textInput = message.text; // The text you wish to convert to speech
 
       try {
@@ -256,7 +255,7 @@ app.post("/chat", async (req, res) => {
         console.log(`Verarbeite Nachricht ${i}: "${textInput.substring(0, 30)}..."`);
         const pollyOutput = await generateSpeechWithVisemes(textInput);
 
-        // Die generierte Audio und Viseme-Daten direkt zur Nachricht hinzufügen
+        // Add the generated audio and viseme data directly to the message
         message.audio = pollyOutput.audio;
         message.lipsync = pollyOutput.lipsync;
 
@@ -265,7 +264,7 @@ app.post("/chat", async (req, res) => {
         console.error(`Fehler bei Nachricht ${i}:`, error);
 
         var outputBaseName = `audios/message_${i}`
-        // Fallback zur bisherigen ElevenLabs + Rhubarb Methode
+        // Fallback to the previous ElevenLabs + Rhubarb method
         console.log("Verwende Fallback-Methode...");
         const fileName = `${outputBaseName}.mp3`;
 
